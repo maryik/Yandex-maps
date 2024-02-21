@@ -12,8 +12,10 @@ function init() {
         });
   
         let placemark = new ymaps.Placemark([latitude, longitude]);
+        let placemark2 = new ymaps.Placemark([53.91637089137845, 27.579584425546187]);
   
         map.geoObjects.add(placemark);
+        map.geoObjects.add(placemark2);
   
         let customButton = new ymaps.control.Button({
           data: {
@@ -33,6 +35,10 @@ function init() {
         // map.controls.remove('geolocationControl'); // удаляем геолокацию
         // map.controls.remove('searchControl'); // удаляем поиск
   
+        let distance = ymaps.coordSystem.geo.getDistance(placemark.geometry.getCoordinates(), placemark2.geometry.getCoordinates());
+      if (distance <= 50) {
+        requestPermission();
+      }
       }, function(error) {
         console.log('Ошибка при получении геолокации: ' + error.message);
       });
@@ -49,4 +55,16 @@ function init() {
 }
 
 ymaps.ready(init);
+
+async function requestPermission() {
+  const perm = await Notification.requestPermission();
+  console.log(perm)
+  if (perm === 'granted') {
+  new Notification('Ура, у вас есть уведомления!', {
+  body: 'Нажмите, чтобы увидеть все уведомления',
+  }).onclick = function () {
+  window.open('http://127.0.0.1:5500/index.html', '_blank');
+  }
+  }
+}
 
