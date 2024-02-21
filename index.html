@@ -10,14 +10,18 @@
 </head>
 <body>
     <div class="container">
-            <!-- <button class="btn"><i class="bi bi-geo-alt-fill"></i></button> -->
-            <div id="map-id" class="map"></div>
-        <!-- <div id="modal" class="modalWindow">
+        <div id="myModal" class="modal">
             <div class="modal-content">
-                <div id="map-id" class="map"></div>
-                <span class="close">&times;</span>
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 class="title">Модальное окно</h2>
+                <p class="start-discount">Старт скидки: </p>
+                <p class="time-discount">Время действия скидки: </p>
             </div>
-        </div> -->
+        </div>
+        <div id="map-id" class="map"></div>
+        <button class="create-placemark">Добавить метку</button>
+        <input type="text" placeholder="Текст метки" class="input2">
+        <input type="text" class="input" placeholder="Количество секунд">
     </div>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=8ce7426e-419d-4d33-9356-cc3c0fabf315&lang=ru_RU" type="text/javascript">
     </script>
