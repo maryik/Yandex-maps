@@ -12,7 +12,7 @@ ymaps.ready(() => {
   };
   document.getElementsByClassName('close')[0].onclick = function() {
     closeModal();
-}
+  };
 });
 
 // requestPermission();

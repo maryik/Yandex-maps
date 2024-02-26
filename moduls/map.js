@@ -3,7 +3,6 @@ export function init() {
     let placemark;
     let latitude;
     let longitude;
-  
     function updatePosition(position) {
       latitude = position.coords.latitude;
       longitude = position.coords.longitude;
@@ -14,6 +13,13 @@ export function init() {
           center: [latitude, longitude],
           zoom: 17
         });
+        map.controls.remove('fullscreenControl');
+        // map.controls.remove('zoomControl');
+        map.controls.remove('geolocationControl');
+        map.controls.remove('searchControl');
+        map.controls.remove('trafficControl');
+        // map.controls.remove('typeSelector');
+        map.controls.remove('rulerControl');
         let textContent = "You";
         placemark = new ymaps.Placemark([latitude, longitude], {
           iconContent: textContent,
@@ -24,7 +30,7 @@ export function init() {
   
         let customButton = new ymaps.control.Button({
           data: {
-            content: '<i class="fas fa-map-marker-alt"></i>',
+            content: 'Your place',
           },
           options: {
             maxWidth: 200,
