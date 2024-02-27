@@ -12,13 +12,25 @@
     <title>Yandex Maps</title>
 </head>
 <body>
+    <div class="menu">
+    <div class="title-menu"><h1>MENU</h1></div>
+    <div class="list_menu">
+        <ul>
+            <li><a href="">Профиль</a></li>
+            <li><a href="">Настройки</a></li>
+            <li><a href="">Уведомления</a></li>
+            <li><a href="">Контакты</a></li>
+        </ul>
+    </div>
+    <div class="footer_menu">
+        <p>©yandex-maps 2024</p>
+    </div>
+</div>
     <div class="container">
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal()">&times;</span>
-                <h2 class="title">Ин<link rel="preconnect" href="https://fonts.googleapis.com">
-                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">формация о скидке</h2>
+                <h2 class="title">Информация о скидке</h2>
                 <p class="start-discount">Старт скидки: </p>
                 <p class="time-discount">Время действия скидки: </p>
             </div>
@@ -40,6 +52,7 @@
                 </button>
             </div>
         </div>
+        <button class="menu-button"><img src="img/list.svg" alt=""></button>
     </div>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=8ce7426e-419d-4d33-9356-cc3c0fabf315&lang=ru_RU" type="text/javascript">
     </script>

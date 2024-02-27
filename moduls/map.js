@@ -11,14 +11,14 @@ export function init() {
       if (!map) {
         map = new ymaps.Map('map-id', {
           center: [latitude, longitude],
-          zoom: 17
+          zoom: 18
         });
         map.controls.remove('fullscreenControl');
         // map.controls.remove('zoomControl');
         map.controls.remove('geolocationControl');
         map.controls.remove('searchControl');
         map.controls.remove('trafficControl');
-        // map.controls.remove('typeSelector');
+        map.controls.remove('typeSelector');
         map.controls.remove('rulerControl');
         let textContent = "You";
         placemark = new ymaps.Placemark([latitude, longitude],{
@@ -42,7 +42,7 @@ export function init() {
         map.controls.add(customButton);
   
         customButton.events.add('click', function() {
-          map.setCenter([latitude, longitude], 17);
+          map.setCenter([latitude, longitude], 18);
         });
       } else {
         placemark.geometry.setCoordinates([latitude, longitude]);
