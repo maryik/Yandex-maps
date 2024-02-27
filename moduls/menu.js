@@ -12,4 +12,9 @@ export function menu() {
             menuWindow.classList.remove('menu-window-open');
         }
     });
+    window.addEventListener('touchstart', function(event) {
+        if (!menuWindow.contains(event.target)) {
+            menuWindow.classList.remove('menu-window-open');
+        }
+    });
 }
