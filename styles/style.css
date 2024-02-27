@@ -4,6 +4,7 @@ html, body{
     width: 100%;
     margin: 0;
     background-image: linear-gradient( 135deg, #FFD26F 10%, #3677FF 100%);
+    overflow: hidden;
 }
 .container{
     height: 100%;
@@ -18,29 +19,108 @@ html, body{
   overflow: hidden;
   z-index: 1;
 }
-.create-placemark{
-    position: absolute;
-    margin-top: 15%;
-    margin-left: 15%;
-    width: 200px;
-    height: 50px;
-    z-index: 3;
+.add-placemark {
+  margin-top: 2%;
+  margin-left: 2%;
+  position: fixed;
+  z-index: 3;
+  --main-focus: #2d8cf0;
+  --font-color: #010101;
+  --bg-color: linear-gradient( 135deg, #81FFEF 10%, #F067B4 100%);
+  background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);
+  --main-color: #323232;
+  position: relative;
+  width: 160px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.add-placemark, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.add-placemark .button__text {
+  transform: translateX(22px);
+  color: var(--font-color);
+  font-weight: 600;
+}
+
+.add-placemark .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-placemark .svg {
+  width: 20px;
+  fill: var(--main-color);
+}
+
+.add-placemark:hover {
+  background: var(--bg-color);
+}
+
+.add-placemark:hover .button__text {
+  color: transparent;
+}
+
+.add-placemark:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.add-placemark:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
 }
 .input{
     position: absolute;
-    margin-top: 23.5%;
-    margin-left: 15%;
-    width: 200px;
+    width: 230px;
     height: 20px;
     z-index: 3;
+    margin-top: 20%;
+    background-color: #212121;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+.input:focus {
+  color: rgb(0, 255, 255);
+  background-color: #212121;
+  outline-color: rgb(0, 255, 255);
+  box-shadow: -3px -3px 15px rgb(0, 255, 255);
+  transition: .1s;
+  transition-property: box-shadow;
 }
 .input2{
     position: absolute;
-    margin-top: 20%;
-    margin-left: 15%;
-    width: 200px;
+    width: 230px;
     height: 20px;
     z-index: 3;
+    background-color: #212121;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+.input2:focus {
+  color: rgb(0, 255, 255);
+  background-color: #212121;
+  outline-color: rgb(0, 255, 255);
+  box-shadow: -3px -3px 15px rgb(0, 255, 255);
+  transition: .1s;
+  transition-property: box-shadow;
 }
 .modal {
     display: none;
@@ -62,6 +142,85 @@ html, body{
     width: 80%;
   }
   
+  .close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    color: #000;
+  }
+  .modal-placemark {
+    display: none;
+    position: fixed;
+    z-index: 4;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+  }
+  .add-placemark2 {
+    top: 33%;
+    margin: 0;
+  height: auto;
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  }
+.add-placemark2 {
+  --border-right: 6px;
+  --text-stroke-color: rgba(255,255,255,0.6);
+  --animation-color: #37FF8B;
+  --fs-size: 2em;
+  letter-spacing: 3px;
+  text-decoration: none;
+  font-size: var(--fs-size);
+  font-family: "Arial";
+  position: relative;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+.hover-text {
+  position: absolute;
+  box-sizing: border-box;
+  content: attr(data-text);
+  color: var(--animation-color);
+  width: 0%;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
+}
+/* hover */
+.add-placemark2:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 23px var(--animation-color))
+}
+.modal-placemark-title{
+  color: #81FBB8;
+  font-family: "Jetbrains Mono", monospace;
+}
+  .modal-content-placemark {
+    position: fixed;
+    background-color: #212121;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 22%;
+    height: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    border-radius: 20px;
+  }
   .close {
     float: right;
     font-size: 28px;

@@ -5,14 +5,15 @@ import { requestPermission } from './requesPermission.js';
 ymaps.ready(() => {
   init();
   window.onclick = function(event) {
-    var modal = document.getElementById("myModal");
-    if (event.target == modal) {
+    let modal = document.getElementById("myModal");
+    let modal2 = document.getElementById("myModal2");
+    if (event.target == modal || event.target == modal2) {
       closeModal();
     }
   };
-  document.getElementsByClassName('close')[0].onclick = function() {
-    closeModal();
-  };
+  let [element0, element1] = [...document.getElementsByClassName('close')];
+  element0.addEventListener('click', closeModal);
+  element1.addEventListener('click', closeModal);
 });
 
 // requestPermission();

@@ -21,11 +21,12 @@ export function init() {
         // map.controls.remove('typeSelector');
         map.controls.remove('rulerControl');
         let textContent = "You";
-        placemark = new ymaps.Placemark([latitude, longitude], {
+        placemark = new ymaps.Placemark([latitude, longitude],{
           iconContent: textContent,
         },{
           preset: 'islands#redStretchyIcon',
         });
+        map.setZoom(18);
         map.geoObjects.add(placemark);
   
         let customButton = new ymaps.control.Button({
@@ -36,7 +37,8 @@ export function init() {
             maxWidth: 200,
           },
         });
-  
+        customButton.options.set('float', 'right');
+
         map.controls.add(customButton);
   
         customButton.events.add('click', function() {
@@ -59,9 +61,14 @@ export function init() {
   
     navigator.geolocation.watchPosition(updatePosition, handlePositionError, watchOptions);
   
-    const addPlacemarkButton = document.querySelector('.create-placemark');
+    const addPlacemarkButton = document.querySelector('.add-placemark');
     addPlacemarkButton.addEventListener('click', function() {
-      alert("Нажмите место на карте для добавления метки")
+      document.getElementById("myModal2").style.display = "block";
+    })
+    const addPlacemarkModalButton = document.querySelector('.add-placemark2');
+    addPlacemarkModalButton.addEventListener('click', function() {
+      alert("Выберите место на карте");
+      document.getElementById("myModal2").style.display = "none";
       if (map) {
         map.events.add('click', function (e) {
           const coords = e.get('coords');
@@ -83,9 +90,9 @@ export function init() {
           const mapTimeOut = setTimeout(() => {
             map.geoObjects.remove(newPlacemark);
           }, seconds * 1000)
+          let modal = document.getElementById("myModal");
           function openModal() {
             let currentDate = new Date();
-            let modal = document.getElementById("myModal");
             modal.style.display = "block";
             document.getElementsByClassName("title")[0].innerHTML = newPlacemark.properties.get('iconContent');
             document.getElementsByClassName("start-discount")[0].innerHTML = "Старт скидки: время: " + currentDate.getHours() + ":" + currentDate.getMinutes() + " дата: " +  currentDate.getDate() + "." + (currentDate.getMonth() + 1) + "." + currentDate.getFullYear();
@@ -103,6 +110,8 @@ export function init() {
   }
 
  export function closeModal() {
-    var modal = document.getElementById("myModal");
+    let modal = document.getElementById("myModal");
+    let modal2 = document.getElementById("myModal2");
     modal.style.display = "none";
+    modal2.style.display = "none";
   }
