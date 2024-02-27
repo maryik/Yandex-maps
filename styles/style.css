@@ -241,17 +241,17 @@ html, body{
       width: 100%;
       height: 100%;
     }
-    .create-placemark {
-        margin-top: 115%;
-        margin-left: 22%;
+    .add-placemark {
+        width: 130px;
     }
     .input{
-      margin-top: 135%;
-      margin-left: 22%;
+      width: 75%;
     }
     .input2 {
-      margin-top: 145%;
-      margin-left: 22%;
+      width: 75%;
+    }
+    .modal-content-placemark {
+      width: 80%;
     }
   }
 
