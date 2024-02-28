@@ -401,13 +401,16 @@ html, body{
       margin-left: -10%;
     }
     .list_menu a{
-      margin-left: -60%;
+      margin-left: -10%;
     }
     .menu-window-open{
       left: 0;
     }
     .slider {
-      width: 80%
+      width: 68%
+    } 
+    .footer_menu {
+      margin-left: -10%;
     }
   }
 

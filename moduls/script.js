@@ -18,4 +18,3 @@ ymaps.ready(() => {
 });
 
 menu();
-//requestPermission();
