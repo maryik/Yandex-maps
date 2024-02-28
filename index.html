@@ -18,21 +18,24 @@
         <ul>
             <li><a href="">Профиль</a></li>
             <li><a href="">Настройки</a></li>
-            <li><a href="">Уведомления</a></li>
+            <!-- <li><a href="">Уведомления</a></li> -->
             <li><a href="">Контакты</a></li>
         </ul>
     </div>
     <div class="footer_menu">
-        <p>©yandex-maps 2024</p>
+        <p>Уведомления: </p>
+        <input type="checkbox" id="checkboxInput" class="notification-checkbox">
+        <label for="checkboxInput" class="toggleSwitch">
+        </label>
     </div>
 </div>
     <div class="container">
         <div id="myModal" class="modal">
             <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
+                <span class="close">&times;</span>
                 <h2 class="title">Информация о скидке</h2>
-                <p class="start-discount">Старт скидки: </p>
                 <p class="time-discount">Время действия скидки: </p>
+                <p class="start-discount">Информация о скидке: </p>
             </div>
         </div>
         <div id="map-id" class="map"></div>  
@@ -42,9 +45,13 @@
         </button>
         <div id="myModal2" class="modal-placemark">
             <div class="modal-content-placemark">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h2 class="modal-placemark-title">Добавление метки</h2>
-                <input type="text" placeholder="Текст метки" class="input2">
+                <span class="close">&times;</span>
+                <h2 class="modal-placemark-title">Добавление скидки</h2>
+                <div class="slider-container">
+                    <input type="range" min="0" max="100" value="50" class="slider" step="5" id="mySlider">
+                    <p id="sliderValue">50%</p>
+                </div>
+                <input type="text" placeholder="Описание скидки" class="input2">
                 <input type="text" class="input" placeholder="Количество секунд">
                 <button class="add-placemark2" data-text="Awesome">
                     <span class="actual-text">&nbsp;Добавить&nbsp;</span>

@@ -16,5 +16,6 @@ ymaps.ready(() => {
   element0.addEventListener('click', closeModal);
   element1.addEventListener('click', closeModal);
 });
+
 menu();
-// requestPermission();
+//requestPermission();

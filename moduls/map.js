@@ -1,3 +1,4 @@
+import { requestPermission } from './requesPermission.js';
 export function init() {
     let map;
     let placemark;
@@ -60,9 +61,20 @@ export function init() {
     };
   
     navigator.geolocation.watchPosition(updatePosition, handlePositionError, watchOptions);
-  
+    
+    const slider = document.getElementById("mySlider");
+    const sliderValue = document.getElementById("sliderValue");
+    slider.addEventListener("input", function() {
+      sliderValue.textContent = slider.value + "%";
+    });
+
+
     const addPlacemarkButton = document.querySelector('.add-placemark');
     addPlacemarkButton.addEventListener('click', function() {
+      // const checkbox = document.getElementById("checkboxInput");
+      //     if (checkbox.checked) {
+      //       requestPermission();
+      //     }
       document.getElementById("myModal2").style.display = "block";
     })
     const addPlacemarkModalButton = document.querySelector('.add-placemark2');
@@ -72,10 +84,9 @@ export function init() {
       if (map) {
         map.events.add('click', function (e) {
           const coords = e.get('coords');
-          const textInput = document.querySelector('.input2');
           // Создаем метку с выбранными координатами
           const newPlacemark = new ymaps.Placemark(coords, {
-            iconContent: textInput.value},{
+            iconContent: slider.value + "%"},{
               preset: 'islands#blueStretchyIcon',
             }
           );
@@ -92,13 +103,13 @@ export function init() {
           }, seconds * 1000)
           let modal = document.getElementById("myModal");
           function openModal() {
-            let currentDate = new Date();
+            const textInput = document.querySelector('.input2');
             modal.style.display = "block";
             document.getElementsByClassName("title")[0].innerHTML = newPlacemark.properties.get('iconContent');
-            document.getElementsByClassName("start-discount")[0].innerHTML = "Старт скидки: время: " + currentDate.getHours() + ":" + currentDate.getMinutes() + " дата: " +  currentDate.getDate() + "." + (currentDate.getMonth() + 1) + "." + currentDate.getFullYear();
+            document.getElementsByClassName("start-discount")[0].innerHTML = "Информация о скидке: " + textInput.value;
             document.getElementsByClassName("time-discount")[0].innerHTML = "Время действия скидки: " + seconds + " секунд";
+            textInput.value = '';
           }
-          textInput.value = '';
           secondsInput.value = '';
         })
       } else {
