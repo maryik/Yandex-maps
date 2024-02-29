@@ -387,23 +387,24 @@ html, body{
 #radioButton, #myLabel, #myLabelText{
   position: fixed;
   margin-top: 11%;
+  margin-left: -1%;
 }
 #myLabelText{
   margin-top: 9.6%;
   color: white;
-  margin-left: 8%;
+  margin-left: 6%;
   font-size: 20px;
 }
 #radioButton2, #myLabel2, #myLabelText2{
   position: fixed;
   margin-top: 11%;
-  margin-left: 20%;
+  margin-left: 18%;
   
 }
 #myLabelText2{
   margin-top: 9.6%;
   color: white;
-  margin-left: 26%;
+  margin-left: 24%;
   font-size: 20px;
 }
   @media screen and (min-width: 320px) and (max-width: 400px) {
