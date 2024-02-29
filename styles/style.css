@@ -105,8 +105,37 @@ html, body{
   transition: .1s;
   transition-property: box-shadow;
 }
+select {
+  appearance: none;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #212121;
+  width: 230px;
+  margin-left: 7%;
+  color: #37FF8B;
+}
+select:focus {
+  outline: none;
+  border-color: #37FF8B;
+}
+select::-ms-expand {
+  display: none;
+}
 #date{
   margin-top: 55%;
+  display: block;
+}
+#time-start, #time-end{
+  display: none;
+  width: 80px;
+}
+#time-end{
+  margin-left: 50%;
+}
+#date-weekday{
+  margin-top: 60%;
 }
 .input2{
     position: absolute;
@@ -170,7 +199,6 @@ html, body{
     backdrop-filter: blur(5px);
   }
   .add-placemark2 {
-    top: 70%;
     margin-left: 7%;
   height: auto;
   background: transparent;

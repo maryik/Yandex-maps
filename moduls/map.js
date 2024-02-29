@@ -108,6 +108,9 @@ addPlacemarkModalButton.addEventListener('click', function() { // Функция
 
       let dateValue = document.getElementById('date').value;
       let timeValue = document.getElementById('time').value;
+      // const newDate = new Date(dateValue);
+      // const dayOfWeek = newDate.toLocaleDateString('en-US', { weekday: 'long' })
+      // console.log(dayOfWeek)
       const deleteTime = dateValue + "T" + timeValue + ":00"; //Получение времени из input
       const targetDate = new Date(deleteTime);
       const now = new Date();
@@ -117,6 +120,7 @@ addPlacemarkModalButton.addEventListener('click', function() { // Функция
         map.geoObjects.remove(newPlacemark);
       }, delay);
 
+      
       let modal = document.getElementById("myModal");
       function openModal() { // Открытие модального окна с информацией о метке
         const textInput = document.querySelector('.input2');

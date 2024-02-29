@@ -5,7 +5,6 @@ export function getDate(){
     let year = today.getFullYear();
     let formattedDate = year + '-' + month + '-' + day;
     document.getElementById('date').value = formattedDate;
-    console.log(formattedDate)
 }
 export function getTime() {
     let time = new Date();
@@ -13,5 +12,4 @@ export function getTime() {
     let minutes = String(time.getMinutes()).padStart(2, '0');
     let formattedTime = hours + ':' + minutes;
     document.getElementById('time').value = formattedTime;  
-    console.log(typeof(time))
 }

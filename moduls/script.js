@@ -3,6 +3,7 @@ import { closeModal } from './map.js';
 import { menu } from './menu.js';
 import { getDate } from './getDateTime.js';
 import { getTime } from './getDateTime.js';
+import { updateDateDisplay } from './checkRadio.js';
 
 ymaps.ready(() => {
   init();
@@ -17,6 +18,15 @@ ymaps.ready(() => {
   element0.addEventListener('click', closeModal);
   element1.addEventListener('click', closeModal);
 });
+
+
+// Добавляем обработчики событий для каждой радиокнопки
+radioButton.addEventListener('change', updateDateDisplay);
+radioButton2.addEventListener('change', updateDateDisplay);
+
+// Вызываем функцию сразу, чтобы установить начальное состояние
+updateDateDisplay();
+
 getDate()
 getTime()
 menu();
