@@ -90,11 +90,12 @@ html, body{
     width: 230px;
     height: 20px;
     z-index: 3;
-    margin-top: 20%;
+    margin-top: 35%;
     background-color: #212121;
   padding: 10px;
   border: 2px solid white;
   border-radius: 5px;
+  color: #37FF8B;
 }
 .input:focus {
   color: rgb(0, 255, 255);
@@ -103,6 +104,9 @@ html, body{
   box-shadow: -3px -3px 15px rgb(0, 255, 255);
   transition: .1s;
   transition-property: box-shadow;
+}
+#date{
+  margin-top: 55%;
 }
 .input2{
     position: absolute;
@@ -113,6 +117,7 @@ html, body{
   padding: 10px;
   border: 2px solid white;
   border-radius: 5px;
+  color:#37FF8B;
 }
 .input2:focus {
   color: rgb(0, 255, 255);
@@ -213,7 +218,7 @@ html, body{
     background-color: #212121;
     padding: 20px;
     border: 1px solid #888;
-    width: 22%;
+    width: 23%;
     height: 70%;
     top: 50%;
     left: 50%;
@@ -381,22 +386,22 @@ html, body{
 }
 #radioButton, #myLabel, #myLabelText{
   position: fixed;
-  margin-top: 20%;
+  margin-top: 11%;
 }
 #myLabelText{
-  margin-top: 18.6%;
+  margin-top: 9.6%;
   color: white;
   margin-left: 8%;
   font-size: 20px;
 }
 #radioButton2, #myLabel2, #myLabelText2{
   position: fixed;
-  margin-top: 20%;
+  margin-top: 11%;
   margin-left: 20%;
   
 }
 #myLabelText2{
-  margin-top: 18.6%;
+  margin-top: 9.6%;
   color: white;
   margin-left: 26%;
   font-size: 20px;
@@ -422,7 +427,7 @@ html, body{
       width: 75%;
     }
     .modal-content-placemark {
-      width: 80%;
+      width: 85%;
     }
     .menu-button{
       left: 5%;
