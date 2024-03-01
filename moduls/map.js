@@ -1,6 +1,7 @@
 import { requestPermission } from './requesPermission.js';
 // import { checkTimeRange } from './script.js';
 import { addPlacemark } from './addPlacemark.js';
+import { addPlacemark2 } from './addPlacemark2.js';
 export function init() {
   let map;
   let placemark;
@@ -88,9 +89,18 @@ export function init() {
   })
 
   const addPlacemarkModalButton = document.querySelector('.add-placemark2');
-  addPlacemarkModalButton.addEventListener('click', function() { // Функция добавления меток
-  addPlacemark(map, slider);
-  })
+addPlacemarkModalButton.addEventListener('click', function() {
+    const radio1 = document.getElementById('radioButton');
+    const radio2 = document.getElementById('radioButton2');
+
+    if (radio1.checked) {
+        addPlacemark(map, slider);
+    } else if (radio2.checked) {
+        const timeStartElement = document.getElementById('time-start').value;
+        const timeEndElement = document.getElementById('time-end').value;
+        addPlacemark2(map, slider, timeStartElement, timeEndElement);
+    }
+});
 }
  export function closeModal() { //Закрытие модального окна
     let modal = document.getElementById("myModal");

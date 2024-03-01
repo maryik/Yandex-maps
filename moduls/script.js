@@ -4,6 +4,8 @@ import { menu } from './menu.js';
 import { getDate } from './getDateTime.js';
 import { getTime } from './getDateTime.js';
 import { updateDateDisplay } from './checkRadio.js';
+import { addPlacemark } from './addPlacemark.js';
+import { addPlacemark2 } from './addPlacemark2.js';
 
 ymaps.ready(() => {
   init();
@@ -26,31 +28,6 @@ radioButton2.addEventListener('change', updateDateDisplay);
 
 // Вызываем функцию сразу, чтобы установить начальное состояние
 updateDateDisplay();
-// export function checkTimeRange(timeStartElement, timeEndElement) {
-//   const currentDate = new Date();
-//   const currentHour = currentDate.getHours();
-//   const currentMinute = currentDate.getMinutes();
-
-//   const startHour = parseInt(timeStartElement.split(":")[0]);
-//   const startMinute = parseInt(timeStartElement.split(":")[1]);
-//   const endHour = parseInt(timeEndElement.split(":")[0]);
-//   const endMinute = parseInt(timeEndElement.split(":")[1]);
-
-//   const currentDateTime = new Date(0, 0, 0, currentHour, currentMinute);
-//   const startDateTime = new Date(0, 0, 0, startHour, startMinute);
-//   const endDateTime = new Date(0, 0, 0, endHour, endMinute);
-
-//   if (currentDateTime >= startDateTime && currentDateTime <= endDateTime) {
-//     console.log("Текущее время находится в промежутке.");
-    
-//   } else {
-//     console.log("Текущее время не находится в промежутке.");
-//   }
-//   const timeDifference = endDateTime.getTime() - startDateTime.getTime();
-//   console.log(timeDifference);
-//   return timeDifference;
-// }
-// Пример использования
 
 getDate()
 getTime()
