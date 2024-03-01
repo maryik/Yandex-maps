@@ -8,7 +8,6 @@ export function getDelayRadio1(map, newPlacemark) {
     const targetDate = new Date(deleteTime);
     const now = new Date();
     const delay = targetDate - now; //Разница между концом метки и нынешним временем
-    console.log(deleteTime);
     const mapTimeOut = setTimeout(() => { // Удаление метки через определенное время
         map.geoObjects.remove(newPlacemark);
     }, delay);
@@ -24,13 +23,10 @@ export function getRadio2(map, newPlacemark) {
 
     if (now >= startDate && now <= endDate) {
         const delay = endDate - now;
-        console.log("Placemark will be removed in", delay, "milliseconds");
 
         const mapTimeout = setTimeout(() => {
             map.geoObjects.remove(newPlacemark);
-            console.log("Placemark removed");
         }, delay);
     } else {
-        console.log("Current time is not within the specified range");
     }
 }
