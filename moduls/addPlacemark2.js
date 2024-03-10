@@ -31,11 +31,6 @@ export function addPlacemark2(map, slider, timeStartElement, timeEndElement) { /
         date.setHours(hours, minutes, 0, 0);
         return date;
     }
-
-    function isToday(selectedDay) { //функция проверки совпадения дня
-        const today = new Date().getDay();
-        return parseInt(selectedDay) === today
-    }
     
     function updatePlacemarkVisibility() {
     const currentTime = new Date();
@@ -47,6 +42,7 @@ export function addPlacemark2(map, slider, timeStartElement, timeEndElement) { /
         // Проверяем, что timeStart и timeEnd не undefined
         if (timeStart && timeEnd) {
             const currentDay = currentTime.getDay();
+            console.log(currentDay);  
             const currentHour = currentTime.getHours();
             const currentMinute = currentTime.getMinutes();
 
@@ -67,43 +63,74 @@ function createPlacemark() {
     const endTime = document.getElementById("time-end").value;
     const formattedStartTime = formatTime(startTime); // получаем отформатированное время старта
     const formattedEndTime = formatTime(endTime); // получаем отформатированное время конца
-
+  
     const currentTime = new Date();
     const currentDay = currentTime.getDay();
     const currentHour = currentTime.getHours();
     const currentMinute = currentTime.getMinutes();
-
+  
+    let newPlacemark = null; // Объявляем переменную с заранее заданным значением null
+  
     // Проверяем, совпадает ли текущий день недели с выбранным
     const isDayMatch = parseInt(selectedDay) === currentDay;
+    console.log(currentDay);
+    console.log(selectedDay);
     // Проверяем, находится ли текущее время в пределах указанного времени начала и конца
     // Учитываем переход через полночь
-    const isTimeMatch = (currentHour >= formattedStartTime.getHours() && currentHour <= formattedEndTime.getHours()) ||
-                        (currentHour < formattedStartTime.getHours() && currentHour >= formattedEndTime.getHours());
+    const isTimeMatch =
+      (currentHour >= formattedStartTime.getHours() &&
+        currentHour <= formattedEndTime.getHours()) ||
+      (currentHour < formattedStartTime.getHours() &&
+        currentHour >= formattedEndTime.getHours());
+  
+        if (isDayMatch && isTimeMatch) {
+            // если совпадает день и время
+            newPlacemark = new ymaps.Placemark(coords, {
+              // создаём метку с определёнными параметрами
+              iconContent: slider.value + "%",
+              selectedDay: selectedDay,
+              timeEnd: formattedEndTime,
+              timeStart: formattedStartTime,
+            }, {
+              preset: "islands#blueStretchyIcon",
+              visible: isDayMatch && isTimeMatch, // показывать метку только на текущий день и в указанное время
+            });
+          
+            newPlacemark.events.add("click", function () {
+              // модальное окно по клику на метку
+              openModal();
+            });
+          
+            map.geoObjects.add(newPlacemark);
+            let timeStart = document.getElementById("time-start");
+            let timeEnd = document.getElementById("time-end");
+            getRadio2(map, newPlacemark, timeStart, timeEnd); // функция удаления метки через указанное время
+            updatePlacemarkVisibility(); // обновление видимости
+          } else {
+            alert("Метка появится в указанный день, в указанное время")
+            newPlacemark = new ymaps.Placemark(coords, {
+              iconContent: slider.value + "%",
+              selectedDay: selectedDay,
+              timeEnd: formattedEndTime,
+              timeStart: formattedStartTime,
+            }, {
+              preset: "islands#blueStretchyIcon",
+              visible: false, 
+            });
+          
+            newPlacemark.events.add("click", function () {
+              // модальное окно по клику на метку
+              openModal();
+            });
 
-    if (isDayMatch && isTimeMatch) { // если совпадает день и время
-        const newPlacemark = new ymaps.Placemark(coords, { // создаём метку с определёнными параметрами
-            iconContent: slider.value + "%",
-            selectedDay: selectedDay,
-            timeEnd: formattedEndTime,
-            timeStart: formattedStartTime
-        }, {
-            preset: 'islands#blueStretchyIcon',
-            visible: isDayMatch && isTimeMatch, // показывать метку только на текущий день и в указанное время
-        });
-
-        newPlacemark.events.add('click', function () { // модальное окно по клику на метку
-            openModal();
-        });
-
-        map.geoObjects.add(newPlacemark);
-        let timeStart = document.getElementById('time-start');
-        let timeEnd = document.getElementById('time-end');
-        getRadio2(map, newPlacemark, timeStart, timeEnd); // функция удаления метки через указанное время
-        updatePlacemarkVisibility(); // обновление видимости
-    } else {
-        alert("Ваша метка появится в указанный день недели в указанное время");
-    }
-}
+            map.geoObjects.add(newPlacemark);
+            let timeStart = document.getElementById("time-start");
+            let timeEnd = document.getElementById("time-end");
+            getRadio2(map, newPlacemark, timeStart, timeEnd);
+            console.log("Метка добавилась");
+            updatePlacemarkVisibility();
+          }
+  }
     
     function openModal() { //открытие модального окна
         const modal = document.getElementById("myModal");
