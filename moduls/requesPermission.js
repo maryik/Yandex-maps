@@ -1,6 +1,7 @@
-export async function requestPermission() { //функция отправки уведомлений
-    const perm = await Notification.requestPermission(); //создание уведомления
-    if (perm === 'granted') { //если отправка разрешена
+export async function requestPermission() {
+    const perm = await Notification.requestPermission();
+    console.log(perm);
+    if (perm === 'granted') {
       new Notification('Ура, у вас есть уведомления!', {
         body: 'Нажмите, чтобы увидеть все уведомления',
       }).onclick = function () {

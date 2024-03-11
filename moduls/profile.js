@@ -8,18 +8,23 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   inputPhoto.addEventListener('change', (event) => {
-    let file = event.target.files[0];//получаем первый прикреплённный файл
+    let file = event.target.files[0];
     let reader = new FileReader();
 
     reader.onload = function(e) {
-      let imageResult = e.target.result; //получаем результат из файла
+      let imageResult = e.target.result;
 
-      profilePhoto.src = imageResult; //меняем ссылку изображения на новую
+      profilePhoto.src = imageResult;
 
-      localStorage.removeItem('photo');//удаление предыдущего изображения из localStorage
-  
-      localStorage.setItem('photo', imageResult);//сохранение нового изображения в localStorage
+      // Удаление предыдущего изображения из localStorage
+      localStorage.removeItem('photo');
+      // Сохранение нового изображения в localStorage
+      localStorage.setItem('photo', imageResult);
     };
     reader.readAsDataURL(file);
   });
 });
+
+for(item in localStorage){
+    console.log(item);
+}

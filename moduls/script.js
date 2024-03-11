@@ -3,10 +3,12 @@ import { closeModal } from './map.js';
 import { menu } from './menu.js';
 import { getDate } from './getDateTime.js';
 import { getTime } from './getDateTime.js';
-import { checkRadio } from './checkRadio.js';
+import { updateDateDisplay } from './checkRadio.js';
+import { addPlacemark } from './addPlacemark.js';
+import { addPlacemark2 } from './addPlacemark2.js';
 
 ymaps.ready(() => {
-  init(); //инициализация карты
+  init();
   window.onclick = function(event) {
     let modal = document.getElementById("myModal");
     let modal2 = document.getElementById("myModal2");
@@ -14,16 +16,19 @@ ymaps.ready(() => {
       closeModal();
     }
   };
-  let [element0, element1] = [...document.getElementsByClassName('close')]; //закрытие модального окна
+  let [element0, element1] = [...document.getElementsByClassName('close')];
   element0.addEventListener('click', closeModal);
   element1.addEventListener('click', closeModal);
 });
 
-radioButton.addEventListener('change', updateDateDisplay);//Добавляем обработчики событий для каждой радиокнопки
+
+// Добавляем обработчики событий для каждой радиокнопки
+radioButton.addEventListener('change', updateDateDisplay);
 radioButton2.addEventListener('change', updateDateDisplay);
 
-checkRadio(); //функция открытия одной части модального окна или второй
+// Вызываем функцию сразу, чтобы установить начальное состояние
+updateDateDisplay();
 
-getDate() //функция для отображения текущей даты в инпуте
-getTime() //функция для отображения текущего времени в инпуте
-menu(); //функция для открытия и закрытия меню
+getDate()
+getTime()
+menu();

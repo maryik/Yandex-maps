@@ -1,4 +1,5 @@
 import { requestPermission } from './requesPermission.js';
+// import { checkTimeRange } from './script.js';
 import { addPlacemark } from './addPlacemark.js';
 import { addPlacemark2 } from './addPlacemark2.js';
 export function init() {
@@ -31,7 +32,7 @@ export function init() {
       map.setZoom(18);
       map.geoObjects.add(placemark); //добавление метки на карту
 
-      let customButton = new ymaps.control.Button({ //Создание своей кнопки на карте
+      let customButton = new ymaps.control.Button({ //Создание кнопки на карте
         data: {
           content: 'Your place',
         },
@@ -39,10 +40,10 @@ export function init() {
           maxWidth: 200,
         },
       });
-      customButton.options.set('float', 'right'); //расположений своей кнопки справа
+      customButton.options.set('float', 'right'); 
       map.controls.add(customButton);
 
-      customButton.events.add('click', function() { //при нажатии на кнопку возвращать на наше местоположение
+      customButton.events.add('click', function() {
         map.setCenter([latitude, longitude], 18);
       });
     } else {
@@ -87,23 +88,23 @@ export function init() {
     document.getElementById("myModal2").style.display = "block"; //открытия модального окна
   })
 
-  const addPlacemarkModalButton = document.querySelector('.add-placemark2'); 
-  addPlacemarkModalButton.addEventListener('click', function() {
-  const radio1 = document.getElementById('radioButton');
-  const radio2 = document.getElementById('radioButton2');
+  const addPlacemarkModalButton = document.querySelector('.add-placemark2');
+addPlacemarkModalButton.addEventListener('click', function() {
+    const radio1 = document.getElementById('radioButton');
+    const radio2 = document.getElementById('radioButton2');
 
-  if (radio1.checked) { //если первый чекбокс вызыв функции добавления одноразовой метки
-      addPlacemark(map, slider);
-  } else if (radio2.checked) { //если второй чекбокс вызыв функции добавления постоянной метки
-      const timeStartElement = document.getElementById('time-start').value;
-      const timeEndElement = document.getElementById('time-end').value;
-      addPlacemark2(map, slider, timeStartElement, timeEndElement);
-  }
+    if (radio1.checked) {
+        addPlacemark(map, slider);
+    } else if (radio2.checked) {
+        const timeStartElement = document.getElementById('time-start').value;
+        const timeEndElement = document.getElementById('time-end').value;
+        addPlacemark2(map, slider, timeStartElement, timeEndElement);
+    }
 });
 }
-export function closeModal() { //Закрытие модального окна
-  let modal = document.getElementById("myModal");
-  let modal2 = document.getElementById("myModal2");
-  modal.style.display = "none";
-  modal2.style.display = "none";
-}
+ export function closeModal() { //Закрытие модального окна
+    let modal = document.getElementById("myModal");
+    let modal2 = document.getElementById("myModal2");
+    modal.style.display = "none";
+    modal2.style.display = "none";
+  }
