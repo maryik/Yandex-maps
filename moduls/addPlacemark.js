@@ -1,4 +1,4 @@
-import { getDelayRadio1 } from "./delayRadio1.js";
+import { getDelayRadio1 } from "./delayRadio1.js"; //импорт функции удаления метки
 export function addPlacemark(map, slider) {
     alert("Выберите место на карте");
     document.getElementById("myModal2").style.display = "none";
@@ -10,7 +10,7 @@ export function addPlacemark(map, slider) {
     }, { // Параметры метки
         preset: 'islands#blueStretchyIcon',
     });
-
+    
     newPlacemark.events.add('click', function() { // Модальное окно по нажатию на метку
         openModal();
     });
@@ -33,7 +33,7 @@ export function addPlacemark(map, slider) {
     map.events.remove('click', clickHandler); // Удаляем обработчик события 'click' на карте
     };
 
-        map.events.add('click', clickHandler); // Добавляем обработчик события 'click' на карте
+    map.events.add('click', clickHandler); // Добавляем обработчик события 'click' на карте
     } else {
         console.log('Карта не инициализирована');
     }
