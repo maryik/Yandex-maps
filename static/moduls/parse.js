@@ -1,10 +1,15 @@
-export function parseBK(){
-    fetch('/sales',{
-        method: 'GET',
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log("hello")
-        console.log("BK",data.json[0].Href);
-    })
-}
+export function parseBK() {
+    return new Promise((resolve, reject) => {
+      fetch('/sales')
+        .then(response => response.json())
+        .then(data => {
+          let firstSailLink = data.json[0].Href;
+          let title = data.json[0].Zagolovok;
+          resolve({ firstSailLink, title })
+        })
+        .catch(error => {
+          console.error("Ошибка при получении firstSail:", error);
+          reject(error); // Отклоняем промис с ошибкой
+        });
+    });
+  }

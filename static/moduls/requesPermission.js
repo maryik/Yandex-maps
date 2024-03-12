@@ -1,7 +1,8 @@
 export async function requestPermission() {
     const perm = await Notification.requestPermission();
-    console.log(perm);
+
     if (perm === 'granted') {
+
       new Notification('Ура, у вас есть уведомления!', {
         body: 'Нажмите, чтобы увидеть все уведомления',
       }).onclick = function () {
@@ -9,3 +10,8 @@ export async function requestPermission() {
       };
     }
 }
+
+// let distance = ymaps.coordSystem.geo.getDistance(placemark.geometry.getCoordinates(), placemark2.geometry.getCoordinates());
+//   if (distance <= 100) {
+//     requestPermission();
+//   } 

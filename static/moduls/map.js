@@ -2,6 +2,7 @@ import { requestPermission } from './requesPermission.js';
 // import { checkTimeRange } from './script.js';
 import { addPlacemark } from './addPlacemark.js';
 import { addPlacemark2 } from './addPlacemark2.js';
+import { createParsePlacemark } from './createParsePlacemark.js';
 export function init() {
   let map;
   let placemark;
@@ -16,6 +17,7 @@ export function init() {
         center: [latitude, longitude],
         zoom: 18
       });
+      createParsePlacemark(map);
       map.controls.remove('fullscreenControl');
       // map.controls.remove('zoomControl');
       map.controls.remove('geolocationControl');

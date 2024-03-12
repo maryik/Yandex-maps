@@ -4,7 +4,6 @@ import { menu } from './menu.js';
 import { getDate } from './getDateTime.js';
 import { getTime } from './getDateTime.js';
 import { updateDateDisplay } from './checkRadio.js';
-import { parseBK } from './parse.js';
 
 ymaps.ready(() => {
   init();
@@ -25,10 +24,7 @@ ymaps.ready(() => {
 radioButton.addEventListener('change', updateDateDisplay);
 radioButton2.addEventListener('change', updateDateDisplay);
 
-// Вызываем функцию сразу, чтобы установить начальное состояние
-updateDateDisplay();
-
-parseBK()
+updateDateDisplay(); // Вызываем функцию сразу, чтобы установить начальное состояние
 getDate()
 getTime()
 menu();
