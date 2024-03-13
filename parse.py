@@ -9,13 +9,13 @@ from bs4 import BeautifulSoup
 
 # headers = {
 #     'Accept':'*/*',
-#     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+#     'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36'
 # }
 current_dir = os.getcwd()
 file_path = os.path.join(current_dir, "bk.json")
 # req=requests.get(url, headers = headers)
-# # src = soup.prettify()
-# # src=req.text
+# src = soup.prettify()
+# src=req.text
 # soup=BeautifulSoup(req.text,'lxml')
 
 # bk_info=[]
@@ -25,7 +25,7 @@ file_path = os.path.join(current_dir, "bk.json")
 #     item_value=item.find('a').text
 #     item_value2=item.find('p').text
 #     bk_info.append({
-#     "Href":item_href,
+#     "Href":"https://burger-king.by"+ item_href,
 #     "Zagolovok":item_value,
 #     "Pod_zagolovok":item_value2})
 #     print(f"{item_value}:   " +"https://burger-king.by"+f"{item_href}\n",f"{item_value2}")

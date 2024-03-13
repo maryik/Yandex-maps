@@ -3,13 +3,14 @@ export function parseBK() {
       fetch('/sales')
         .then(response => response.json())
         .then(data => {
-          let firstSailLink = data.json[0].Href;
-          let title = data.json[0].Zagolovok;
-          resolve({ firstSailLink, title })
+          // Извлекаем все ссылки и заголовки из data.json
+          let allSailLinks = data.json.map(item => item.Href);
+          let titles = data.json.map(item => item.Zagolovok);
+          resolve({ allSailLinks, titles });
         })
         .catch(error => {
-          console.error("Ошибка при получении firstSail:", error);
+          console.error("Ошибка при получении данных:", error);
           reject(error); // Отклоняем промис с ошибкой
         });
     });
-  }
+}
