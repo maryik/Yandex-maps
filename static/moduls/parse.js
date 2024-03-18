@@ -6,6 +6,7 @@ export function parseBK() {
           // Извлекаем все ссылки и заголовки из data.json
           let allSailLinks = data.json.map(item => item.Href);
           let titles = data.json.map(item => item.Zagolovok);
+          console.log(data[1])
           resolve({ allSailLinks, titles });
         })
         .catch(error => {
