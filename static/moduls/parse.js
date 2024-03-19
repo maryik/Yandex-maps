@@ -4,14 +4,14 @@ export function parseBK() {
      fetch('/sales')
        .then(response => response.json())
        .then(data => {
-         // Предполагается, что data.json - это массив массивов
+        console.log(data.json)
          let parsedData = data.json.map(array => {
            // Извлекаем все ссылки и заголовки из каждого массива
            let allSailLinks = array[0].map(item => item.Href);
            let titles = array[0].map(item => item.Zagolovok);
            let coords = array[0][0].Koords;
-           console.log(allSailLinks, titles, coords);
-           return { allSailLinks, titles, coords };
+           let names = array[0].map(item => item.name);
+           return { allSailLinks, titles, coords, names };
          });
          resolve(parsedData);
        })

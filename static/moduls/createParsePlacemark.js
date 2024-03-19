@@ -12,7 +12,7 @@ export async function createParsePlacemark(map) {
         establishment.coords.forEach(coord => {
             // Создаем метку для каждой координаты
             const parsePlacemark = new ymaps.Placemark(coord, {
-                iconContent: "хуй", // Предполагается, что иконка будет содержать все заголовки, разделенные запятыми
+                iconContent: establishment.names[0], // Предполагается, что иконка будет содержать все заголовки, разделенные запятыми
             }, {
                 preset: 'islands#blueStretchyIcon',
             });
