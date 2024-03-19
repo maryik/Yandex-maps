@@ -1,43 +1,45 @@
 import { parseBK } from "./parse.js";
 
-export function createParsePlacemark(map) {
-  const coordinates = [
-    [53.91713280502105, 27.5873953693163],
-    [53.90478711443015, 27.553731144620254],
-    [53.908680463666805, 27.548838795322062],
-  ];
+export async function createParsePlacemark(map) {
+ const parsedData = await parseBK();
+ console.log("Данные из parseBK:", parsedData);
 
-  coordinates.forEach(async (coordinate) => {
-    const parsePlacemark = new ymaps.Placemark(coordinate, {
-      iconContent: 'БК'
-    }, {
-      preset: 'islands#blueStretchyIcon',
-    });
+ // Проходимся по каждому массиву в parsedData
+ parsedData.forEach(establishment => {
+    // Проверяем, что coords является массивом
+    if (Array.isArray(establishment.coords)) {
+        // Проходимся по каждой координате в массиве coords
+        establishment.coords.forEach(coord => {
+            // Создаем метку для каждой координаты
+            const parsePlacemark = new ymaps.Placemark(coord, {
+                iconContent: "хуй", // Предполагается, что иконка будет содержать все заголовки, разделенные запятыми
+            }, {
+                preset: 'islands#blueStretchyIcon',
+            });
 
-    parsePlacemark.events.add('click', function () { // Модальное окно по нажатию на метку
-      openModal();
-    });
-    map.geoObjects.add(parsePlacemark); // Добавляем метку на карту
-
-    async function openModal() {
-        const modal = document.getElementById("myModal");
-        modal.style.display = "block";
-    
-        try {
-            const { allSailLinks, titles } = await parseBK();
-            let discountInfo = "Информация о скидках:<br>";
-            for (let i = 0; i < allSailLinks.length; i++) {
-                discountInfo += `<a href='${allSailLinks[i]}' target='_blank'>${titles[i]}</a><br>`;
-            }
-            document.getElementsByClassName("start-discount")[0].innerHTML = discountInfo;
-            document.getElementsByClassName("time-discount")[0].innerHTML = ""
-        } catch (error) {
-            console.error("Ошибка при получении информации о скидках:", error);
-        }
-    
-        // Дополнительный код, который не изменился
-        document.getElementsByClassName("title")[0].innerHTML = parsePlacemark.properties.get('iconContent');
-        console.log(await parseBK());
+            parsePlacemark.events.add('click', function () { // Модальное окно по нажатию на метку
+                openModal(establishment.allSailLinks, establishment.titles, parsePlacemark);
+            });
+            map.geoObjects.add(parsePlacemark); // Добавляем метку на карту
+        });
     }
-  });
+ });
 }
+
+function openModal(allSailLinks, titles, parsePlacemark) {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+
+    try {
+        let discountInfo = "Информация о скидках:<br>";
+        allSailLinks.forEach((link, index) => {
+            discountInfo += `<a href='${link}' target='_blank'>${titles[index]}</a><br>`;
+        });
+        document.getElementsByClassName("start-discount")[0].innerHTML = discountInfo;
+        document.getElementsByClassName("time-discount")[0].innerHTML = ""
+    } catch (error) {
+        console.error("Ошибка при получении информации о скидках:", error);
+    }
+
+    document.getElementsByClassName("title")[0].innerHTML = parsePlacemark.properties.get('iconContent');
+};

@@ -153,7 +153,8 @@ def get_json():
     all_data = []
     for file_path in file_pathes:
         with open(file_path, "r", encoding="utf-8") as file:
+            temp=[]
             data = json.load(file)
-            all_data.extend(data)
+            temp.append(data)
+            all_data.append(temp)
     return all_data
-get_json()
