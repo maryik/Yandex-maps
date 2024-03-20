@@ -15,8 +15,11 @@ export async function createParsePlacemark(map) {
                 iconContent: establishment.names[0], // Предполагается, что иконка будет содержать все заголовки, разделенные запятыми
             }, {
                 preset: 'islands#blueStretchyIcon',
+                // iconLayout: 'default#image', // Используйте пользовательский макет для иконки
+                // iconImageHref: 'https://play-lh.googleusercontent.com/aWdkvmj5QCTTk-zpeGGoKj2InSP_gmgnFLprC_owNAwapDeMf8JR4v6vP2jZigc49kk=w240-h480-rw', // URL изображения из интернета
+                // iconImageSize: [30, 30], // Укажите размеры изображения
+                // iconImageOffset: [-15, -42] // Укажите смещение изображения относительно точки метки
             });
-
             parsePlacemark.events.add('click', function () { // Модальное окно по нажатию на метку
                 openModal(establishment.allSailLinks, establishment.titles, parsePlacemark);
             });
