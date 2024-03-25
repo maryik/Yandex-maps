@@ -257,6 +257,25 @@ select::-ms-expand {
     scrollbar-width: thin;
     scrollbar-color: transparent transparent;
   }
+  .title{
+    font-family: "Jetbrains Mono", monospace;
+    font-size: 40px;
+    color: #81FBB8;
+  }
+  .start-discount{
+    font-size: 25px;
+    color: #37FF8B;
+    text-decoration: none;
+  }
+  .start-discount a {
+    font-size: 20px;
+    color: #fcfffc;
+    text-decoration: none;
+}
+
+.start-discount a:active {
+    color: #ff0000;
+}
   .modal-content-placemark::-webkit-scrollbar {
     width: 6px;
   }

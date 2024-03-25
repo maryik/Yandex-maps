@@ -34,9 +34,9 @@ function openModal(allSailLinks, titles, parsePlacemark) {
     modal.style.display = "block";
 
     try {
-        let discountInfo = "Информация о скидках:<br>";
+        let discountInfo = "Информация о скидках: <br><br>";
         allSailLinks.forEach((link, index) => {
-            discountInfo += `<a href='${link}' target='_blank'>${titles[index]}</a><br>`;
+            discountInfo += `<a href='${link}' target='_blank'>${titles[index]}</a><br><br>`;
         });
         document.getElementsByClassName("start-discount")[0].innerHTML = discountInfo;
         document.getElementsByClassName("time-discount")[0].innerHTML = ""
